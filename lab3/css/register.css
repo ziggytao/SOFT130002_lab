@@ -1,0 +1,65 @@
+header {
+	float: left;
+}
+nav a {
+	font-size: 16pt;
+	color: #1986F1;
+}
+
+body {
+	background-color: rgb(250,250,250);
+}
+main {
+	margin: 0 auto;
+	box-sizing: border-box;
+	width: 30%;
+}
+main h1 {
+	color: #1986F1;
+	padding: 0 40px;
+}
+select{
+	margin-top: 5px;
+}
+.select-divce {
+	margin-top: -10px;
+}
+.register-button {
+	height: 27px;
+	font-size: 12pt;
+	width: 40%;
+	background-color: white;
+	border-radius: 3px;
+	border-width: 1px;
+	color: #1986F1;
+	background-color: #e6f3ff;
+}
+.button {
+	padding: 0 10px;
+	background-color: #1986F1;
+	height: 27px;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: lightgrey;
+	color: white;
+}
+.register-button:hover {
+	/*background-color: #1986F1;*/
+	background-color: #1986F1;
+	color: white;
+
+}
+.register-section {
+	padding: 0 40px;
+
+}
+.input-content {
+	width: 80%;
+	padding: 5px;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: lightgrey;
+	margin-top: 10px;
+}
