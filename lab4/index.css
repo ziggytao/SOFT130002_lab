@@ -38,12 +38,13 @@ footer a{
 	margin: 0 auto;
 	width: 90%;
 	margin-top: 20px;
-	margin-bottom: 20px;
-
 }
 .table tbody tr td {
 	padding: 15px;
 }
 a {
 	color: inherit;
+}
+main nav {
+	text-align: center;
 }
