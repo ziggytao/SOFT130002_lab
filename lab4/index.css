@@ -1,0 +1,49 @@
+.navbar-brand{
+    padding: 6px 6px;
+}
+.navbar {
+	border-radius: 0px;
+}
+footer{
+    background-color: #333333;
+}
+.row{
+    margin-top: 30px;
+    margin-left: 110px;
+}
+.copyright{
+    color: white;
+    text-align: center;
+}
+footer a{
+    color: white;
+}
+#refresh-btn{
+	z-index: 999;
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+}
+#up-btn{
+	z-index: 999;
+	position: fixed;
+	right: 50px;
+	bottom: 0px;
+}
+.carousel-img {
+	width: 100%;
+	max-height: 700px;
+}
+.table{
+	margin: 0 auto;
+	width: 90%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+
+}
+.table tbody tr td {
+	padding: 15px;
+}
+a {
+	color: inherit;
+}
