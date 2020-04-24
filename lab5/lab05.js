@@ -10,7 +10,10 @@ let url_submit = document.getElementById("url_submit");
 let url_result = document.getElementById("url-result");
 url_submit.addEventListener('click',showWindowHref);
 function showWindowHref(){
-
+	var str= url.value;
+	var start = str.search("name=");
+	var end = str.substring(start,str.length).search("&") + start;
+	url_result.value = str.substring(start+5,end);
 }
 //2. 每隔五秒运行一次函数直到某一整分钟停止，比如从20:55:45运行到20:56:00停止；或者运行10次，先到的为准。从1开始每过五秒，输入框内数值翻倍。初始值为1。
 //注意：你可以在函数 timeTest内部 和 timeTest外部 写代码使得该功能实现。
@@ -18,7 +21,17 @@ function showWindowHref(){
 
 //提示：mul为html中id为"mul"的元素对象，可直接通过mul.value获得其内的输入值。
 let mul = document.getElementById("mul");
+mul.value = 1;
+var cnt = 0;
+var date = new Date();
+var f = setInterval(timeTest, 5000);
 function timeTest(){
+	if(new Date().getSeconds() < date.getSeconds() || cnt >= 10){
+		clearInterval(f);
+	}else{
+		cnt++;
+		mul.value *= 2;
+	}
 }
 //3. 判断输入框most里出现最多的字符，并统计出来。统计出是信息在most_result输入框内以"The most character is:" + index + " times:" + max的形式显示。
 //如果多个出现数量一样则选择一个即可。
@@ -30,5 +43,21 @@ let result = document.getElementById("most-result");
 let most_submit = document.getElementById("most_submit");
 most_submit.addEventListener('click',arrSameStr);
 function arrSameStr(){
+	var str = most.value;
+	var times = {};
+	var max = 0,max_ch;
 
+	for(var i = 0; i < str.length; i++){
+		if(times[str[i]]){
+			times[str[i]]++;
+		}else {
+			times[str[i]] = 1;
+		}
+		if(times[str[i]] > max){
+			max = times[str[i]];
+			max_ch = str[i];
+		}
+	}
+	
+	result.value = "The most character is:" + max_ch + " times:" + max;
 }
