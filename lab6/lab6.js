@@ -11,7 +11,24 @@
 */
 
 function testTime(){
+    var mul = 1;
+    var cnt = 0;
+    var date = new Date();
+    console.log(mul);
+    var f = setInterval(timeTest, 5000);
+    function timeTest(){
+        if(new Date().getSeconds() < date.getSeconds() || cnt >= 10){
+            if(new Date().getSeconds() < date.getSeconds()){
+                console.log("Stop");
+            }
+            clearInterval(f);
 
+        }else{
+            cnt++;
+            mul *= 2;
+            console.log(mul);
+        }
+    }
 }
 // testTime();
 
@@ -24,9 +41,23 @@ function testTime(){
     ④telephone与mail均是字符串。
 */
 function testMail(telephone,mail) {
+    var tel = /^((13[0-9])|(17[0-1,6-8])|(15[^4,\\D])|(18[0-9]))\d{8}$/;
+    var istel = tel.test(telephone);
+    var ml = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    var ismail = ml.test(mail);
+    if(istel && ismail){
+        console.log("The telephone is right and the mail is right!");
+    }else if(istel && !ismail){
+        console.log("The telephone is right and the mail is wrong!");
+    }else if(!istel && ismail){
+        console.log("The telephone is wrong and the mail is right!");
+    }else{
+        console.log("The telephone is wrong and the mail is wrong!");
+    }
+
 
 }
-
+// testMail("18701756127","999@i.com.ll.l");
 /*
 3.
 要求：
@@ -37,9 +68,25 @@ function testMail(telephone,mail) {
     ⑤str为字符串。
 */
 function testRedundancy(str) {
-
+    var reg = /\b([a-z]+) \1\b/ig;
+    var set = new Set(str.match(reg));
+    if(set.size > 10){
+        var tmp = Array.from(set);
+        tmp.sort();
+        var newset = new Set();
+        for(var e of tmp){
+            newset.add(e);
+            if(newset.size >= 10){
+                break;
+            }
+        }
+        set.clear();
+        console.log(newset);
+    }else {
+        console.log(set);
+    }
 }
-
+// testRedundancy("Is is the iS is cost of of gasoline going up up Up up UP up j J k K L l l L p P a a b B");
 
 /*
 4.
@@ -56,9 +103,17 @@ function testRedundancy(str) {
     ①注意联系生活，并注意观察我给的上述例子。
 */
 function testKeyBoard(wantInput, actualInput) {
-
+    wantInput = wantInput.toUpperCase();
+    actualInput = actualInput.toUpperCase();
+    var s =  new Set();
+    for(var i = 0; i < wantInput.length; i++){
+        if(actualInput.search(wantInput[i]) == -1){
+            s.add(wantInput[i]);
+        }
+    }
+    console.log(s);
 }
-
+// testKeyBoard("7_This_is_a_test", "_hs_s_a_es");
 /*
 5.
 背景：
@@ -72,8 +127,20 @@ function testKeyBoard(wantInput, actualInput) {
     ⑤str为字符串。
 */
 function testSpecialReverse(str) {
+    var a = str.split(/\s+/);
+    a.reverse();
+    var s = "";
+    for(var i = 0; i < a.length; i++){
+        if(a[i]){
+            s += a[i];
+            if(i < a.length-1){
+                s += " ";
+            }
+        }
+    }
+    console.log(s);
 }
-
+// testSpecialReverse("  hello  world!  ");
 /*
 6.
 背景：
@@ -90,8 +157,22 @@ function testSpecialReverse(str) {
 */
 
 function twoSum(nums, target) {
+    let nmap = new Map();
+    for(var i = 0; i < nums.length; i++){
+        if(nmap.has(nums[i])){
+            nmap.set(nums[i],nmap.get(nums[i])+1);
+        }else {
+            nmap.set(nums[i],1);
+        }
+        if(nmap.has(target-nums[i])){
+            if(target-nums[i] != nums[i] || nmap.get(nums[i]) > 1){
+                console.log("[ "+nums.indexOf(target-nums[i])+", "+i+" ]");
+            }
+        }
+    }
 }
-
+// var nums = [1,2,3,4,4];
+// twoSum(nums,5);
 
 /*
 7.
@@ -105,8 +186,17 @@ function twoSum(nums, target) {
     ⑤str为字符串。
 */
 function lengthOfLongestSubstring(str) {
+    let m = new Map();
+    for(var i = 0; i < str.length; i++){
+        if(!m.has(str[i])){
+            m.set(str[i],1);
+        }else {
+            // m.set(str[i],m.get(str[i])+1);
+        }
+    }
+    console.log(m.size);
 }
-
+// lengthOfLongestSubstring("vbcdsbbb");
 /*
 8.
 背景：
@@ -119,3 +209,37 @@ function lengthOfLongestSubstring(str) {
 function Country() {
     this.name = "国家";
 }
+
+//借助构造函数
+function DevelopingCountry() {
+    Country.call(this);
+    this.name = "发展中国家";
+    this.sayHi = function () {
+        console.log("Hi,i am a developing country.");
+    };
+}
+var country1 = new DevelopingCountry();
+// country1.sayHi();
+
+//原型链
+function PoorCountry() {
+    this.name = "贫穷国家";
+}
+PoorCountry.prototype = new Country();
+PoorCountry.prototype.saySad = function () {
+    console.log("I am a sad poor country.");
+};
+var country2 = new PoorCountry();
+// country2.saySad();
+
+//Object.create
+var country = new Country();
+var DevelopedCountry = Object.create(Country,{
+    name: {value:"发达国家"},
+    sayHappy: {
+        value: function () {
+            console.log("I am a happy developed country.");
+        }
+    }
+});
+// DevelopedCountry.sayHappy();
