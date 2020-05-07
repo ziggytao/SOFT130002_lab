@@ -41,9 +41,9 @@ function testTime(){
     ④telephone与mail均是字符串。
 */
 function testMail(telephone,mail) {
-    var tel = /^((13[0-9])|(17[0-1,6-8])|(15[^4,\\D])|(18[0-9]))\d{8}$/;
+    var tel = /^((13[0-9])|(17[0-1,6-8])|(15[7-9])|(18[0-9]))\d{8}$/;
     var istel = tel.test(telephone);
-    var ml = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    var ml = /^[a-zA-Z0-9_]+@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)+$/;
     var ismail = ml.test(mail);
     if(istel && ismail){
         console.log("The telephone is right and the mail is right!");
@@ -57,7 +57,7 @@ function testMail(telephone,mail) {
 
 
 }
-// testMail("18701756127","999@i.com.ll.l");
+// testMail("18701756127","999__9@i_9._com_.l_l._");
 /*
 3.
 要求：
