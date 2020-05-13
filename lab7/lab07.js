@@ -16,13 +16,12 @@ for(var i = 0; i < 4; i++){
 
     var author_info = document.createElement("div");
     author_info.className = "inner-box";
-    author_info.style.overflow = "hidden";
     var author = document.createElement("h3");
     author.style.float = "left";
-    var lifetime = document.createElement("p");
-    lifetime.style.width = "60%";
-    lifetime.style.overflow = "hidden";
-    lifetime.style.marginTop = "10px";
+    var lifetime = document.createElement("h5");
+    lifetime.style.display = "inline-block";
+    lifetime.style.marginTop = "13px";
+    lifetime.style.marginBottom = "0px";
     lifetime.style.paddingLeft = "1em";
     var node2 = document.createTextNode(works[i].author);
     var node3 = document.createTextNode("lifetime:"+ works[i].lifetime);
@@ -47,10 +46,11 @@ for(var i = 0; i < 4; i++){
     }
 
     var visit_btn = document.createElement("button");
-    var p = document.createElement("p");
+    var h5 = document.createElement("h5");
     var node5 = document.createTextNode("Visit");
-    p.appendChild(node5);
-    visit_btn.appendChild(p);
+    h5.appendChild(node5);
+    h5.style.margin = "0px";
+    visit_btn.appendChild(h5);
     item.appendChild(visit_btn);
 
 }
