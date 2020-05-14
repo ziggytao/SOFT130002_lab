@@ -7,12 +7,14 @@ const works = [
 for(var i = 0; i < 4; i++){
     var item = document.createElement("div");
     item.className = "item";
+    var main = document.getElementsByClassName("flex-container justify");
+    main[0].appendChild(item);
+
     var head = document.createElement("h4");
     var node = document.createTextNode("Genre : "+works[i].tips);
     head.appendChild(node);
     item.appendChild(head);
-    var main = document.getElementsByClassName("flex-container justify");
-    main[0].appendChild(item);
+
 
     var author_info = document.createElement("div");
     author_info.className = "inner-box";
