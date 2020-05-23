@@ -3,10 +3,14 @@
 /********************************************begin************************************/
 
 /*Global Variable Area */
-
+var bd = document.getElementById("bd");
+var container = bd.children[0];
+var wrap = container.children[0];
+var btns = container.children[1];
+var pic = 1;
+var btnnumber = 0;
+var time = setInterval(rightonclick,2000);
 /*********************************************end*************************************/
-
-
 
 /* 任务一
  * 请参考css中的style参数、html中的内容、下方的效果要求，然后在下面区域内编写代码。
@@ -23,8 +27,34 @@
 /********************************************begin************************************/
 
 /*Code Here*/
-
-
+function rightonclick() {
+    btns.children[btnnumber].className = "";
+    btnnumber++;
+    if (btnnumber > 4){
+        btnnumber = 0;
+    }
+    btns.children[btnnumber].className = "on";
+    pic++;
+    if(pic > 5){
+        pic = 1;
+    }
+    let current = pic * 600 * -1;
+    wrap.style.left = current + "px";
+}
+function leftonclick() {
+    btns.children[btnnumber].className = "";
+    btnnumber--;
+    if (btnnumber < 0){
+        btnnumber = 4;
+    }
+    btns.children[btnnumber].className = "on";
+    pic--;
+    if(pic < 1){
+        pic = 5;
+    }
+    let location = pic * 600 * -1;
+    wrap.style.left = location + "px";
+}
 /*********************************************end*************************************/
 
 
@@ -41,7 +71,12 @@
 /********************************************begin************************************/
 
 /*Code Here*/
-
+container.onmouseover = function () {
+    clearInterval(time);
+};
+container.onmouseout = function () {
+    time = setInterval(rightonclick,2000);
+};
 /*********************************************end*************************************/
 
 
@@ -56,7 +91,18 @@
 /********************************************begin************************************/
 
 /*Code Here*/
-
+for(let i = 0; i < btns.children.length; i++){
+    btns.children[i].onclick = function () {
+        return function () {
+            btns.children[btnnumber].className = "";
+            btnnumber = i;
+            btns.children[btnnumber].className = "on";
+            pic = i+1;
+            let location = pic * 600 * -1;
+            wrap.style.left = location + "px";
+        }
+    }();
+}
 /*********************************************end*************************************/
 
 
@@ -70,5 +116,30 @@
 /********************************************begin************************************/
 
 /*Code Here*/
+$(document).ready(function(){
+    $("td").click(on);
+    function on() {
+        var tdnode = $(this);
+        if(tdnode.children('input').length > 0){
+            return false;
+        }
+
+        var text = tdnode.text();
+        var input = $("<input type='text' value='" + text + "'/>");
+        input.css({
+            "border-width":"0px",
+            "width":tdnode.css("width"),
+            "height":tdnode.css("height"),
+            "font-size":tdnode.css("font-size"),
+            "background-color":"rgb(230,255,255)"
+        });
+        tdnode.css("width", input.css("width"));
+        tdnode.html(input);
+        input.focus();
+        input.blur(function () {
+            tdnode.html(input.val());
+        });
+    }
+});
 
 /*********************************************end*************************************/

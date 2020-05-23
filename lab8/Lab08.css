@@ -5,6 +5,9 @@
 a{
     text-decoration: none;
 }
+h3{
+    text-align: center;
+}
 .container {
     position: relative;
     width: 600px;
@@ -67,4 +70,8 @@ a{
 }
 .container .arrow:hover {
     background-color: rgba(0,0,0,0.2);
+}
+table{
+    width: 600px;
+    margin: 20px auto 0;
 }
